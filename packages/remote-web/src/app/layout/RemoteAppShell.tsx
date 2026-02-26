@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "@tanstack/react-router";
 import { siDiscord, siGithub } from "simple-icons";
@@ -164,13 +170,23 @@ export function RemoteAppShell({ children }: RemoteAppShellProps) {
         onCreateOrg={handleCreateOrg}
       />
     );
-  }, [isMobile, organizations, selectedOrgId, setSelectedOrgId, handleCreateOrg]);
+  }, [
+    isMobile,
+    organizations,
+    selectedOrgId,
+    setSelectedOrgId,
+    handleCreateOrg,
+  ]);
 
   return (
-    <div className={cn(
-      'flex bg-primary',
-      isMobile ? 'fixed inset-0 pb-[env(safe-area-inset-bottom)]' : 'h-screen'
-    )}>
+    <div
+      className={cn(
+        "flex bg-primary",
+        isMobile
+          ? "fixed inset-0 pb-[env(safe-area-inset-bottom)]"
+          : "h-screen",
+      )}
+    >
       {!isMobile && (
         <AppBar
           projects={projects}
@@ -255,7 +271,7 @@ export function RemoteAppShell({ children }: RemoteAppShellProps) {
                       "transition-colors",
                       project.id === activeProjectId
                         ? "bg-brand/10 text-high"
-                        : "text-normal hover:bg-secondary"
+                        : "text-normal hover:bg-secondary",
                     )}
                   >
                     <span
@@ -268,8 +284,13 @@ export function RemoteAppShell({ children }: RemoteAppShellProps) {
               )
             ) : (
               <div className="px-4 py-6 text-center">
-                <KanbanIcon className="h-8 w-8 mx-auto text-low" weight="bold" />
-                <p className="mt-3 text-sm font-medium text-high">Kanban Boards</p>
+                <KanbanIcon
+                  className="h-8 w-8 mx-auto text-low"
+                  weight="bold"
+                />
+                <p className="mt-3 text-sm font-medium text-high">
+                  Kanban Boards
+                </p>
                 <p className="mt-1 text-xs text-low">
                   Sign in to organise your coding agents with kanban boards.
                 </p>
@@ -309,7 +330,12 @@ export function RemoteAppShell({ children }: RemoteAppShellProps) {
       </MobileDrawer>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <RemoteNavbarContainer organizationName={selectedOrgName} mobileMode={isMobile} onOpenDrawer={() => setIsDrawerOpen(true)} mobileUserSlot={mobileUserSlot} />
+        <RemoteNavbarContainer
+          organizationName={selectedOrgName}
+          mobileMode={isMobile}
+          onOpenDrawer={() => setIsDrawerOpen(true)}
+          mobileUserSlot={mobileUserSlot}
+        />
         <div className="min-h-0 flex-1">{children}</div>
       </div>
     </div>
